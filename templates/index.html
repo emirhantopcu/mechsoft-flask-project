@@ -1,0 +1,90 @@
+<!doctype html>
+
+
+<head><title>Submit meeting</title>
+    <script>
+        const deleteMeeting = (e)=>{
+            console.log("alkjdklasd")
+            const url = 'http://localhost:5000/api/deleteMeeting/' + id;
+            fetch(url, {
+                method: 'DELETE'
+            })
+            .then(response => {
+                console.log('Success:', error);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+          
+             });
+        }
+    </script>
+    
+    <meta charset=utf-8>
+    
+</head>
+<body><h1>Submit new meeting</h1></body>
+
+
+<form action="/api/submitMeeting" method="POST">
+    <label for="meeting_subject">Enter meeting subject:</label><br>
+    <input type="text" id="meeting_subject" name="meeting_subject"><br><br>
+    <label for="date">Enter date:</label><br>
+    <input type="date" id="date" name="date"><br><br>
+    <label for="s_time">Starting time:</label><br>
+    <input type="time" id="s_time" name="s_time"><br><br>
+    <label for="e_time">Ending time:</label><br>
+    <input type="time" id="e_time" name="e_time"><br><br>
+    <label for="participants">Participants:</label><br>
+    <input type="text" id="participants" name="participants"><br><br>
+    <button><a>Submit</a></button>
+</form>
+
+
+<h2>Meetings</h2>
+<table style="margin: 5px;">
+    <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Date</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Participants</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for meeting in query %}
+        <tr>
+            <th scope="row">{{meeting.id}}</th>
+            <th>{{meeting.meeting_subject}}</th>
+            <th>{{meeting.date}}</th>
+            <th>{{meeting.s_time}}</th>
+            <th>{{meeting.e_time}}</th>
+            <th>{{meeting.participants}}</th>
+            <th><form action="/api/deleteMeeting" method="get">
+                <input type="hidden" id="meeting_id" name="meeting_id" value="{{meeting.id}}">
+                <button>Delete</button>
+            </form></th>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h2>Edit meeting</h2>
+<form action="/api/editMeeting" method="POST">
+    <label for="meeting_id">Enter meeting id to update:</label><br>
+    <input type="text" id="meeting_id" name="meeting_id"><br><br>
+    <label for="meeting_subject">New meeting subject:</label><br>
+    <input type="text" id="meeting_subject" name="meeting_subject"><br><br>
+    <label for="date">New date:</label><br>
+    <input type="date" id="date" name="date"><br><br>
+    <label for="s_time">New starting time:</label><br>
+    <input type="time" id="s_time" name="s_time"><br><br>
+    <label for="e_time">New ending time:</label><br>
+    <input type="time" id="e_time" name="e_time"><br><br>
+    <label for="participants">New participants:</label><br>
+    <input type="text" id="participants" name="participants"><br><br>
+    <button style="margin: 5px;"><a>Edit</a></button><b>Only fill to be updated areas!</b>
+</form>
+
