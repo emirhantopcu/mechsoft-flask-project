@@ -28,3 +28,4 @@ $ (env) pip install -r requirements.txt
 $ (env) python app.py
 ```
 
+6. I used PostgreSQL as the database system. The config for postgres server can be found on app.py. You will need to change it to your username-password in order to connect your own postgresql server. 
