@@ -31,3 +31,9 @@ $ (env) python app.py
 6. I used PostgreSQL as the database system. The config for postgres server can be found on app.py. You will need to change it to your username-password in order to connect your own postgresql server. 
 
 7. The table name for meeting model is called "meetings". Also the database I created on my local machine was called flaskproject.
+
+8. To create the table in postgres:
+```
+flash shell
+>>> db.create_all
+```
